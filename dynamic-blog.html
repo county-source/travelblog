@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Page</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">Travel Blog<span>*</span></div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./bloglist.html">Blogs</a></li>
+            <li><a href="./login.html">Login</a></li>
+            <li><a href="./register.html">Register</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Image -->
+    <div class="hero-image">
+        <img src="./images/hero-image.jpg" alt="Hero Image">
+    </div>
+
+    <!-- Section 1 -->
+    <section class="section">
+        <h2>Section 1</h2>
+        <p>This is the first section content.</p>
+    </section>
+
+    <!-- Images Grid -->
+    <div class="image-grid">
+        <!-- Levá půlka -->
+        <div class="image-1">Image 1</div>
+        
+        <!-- Pravá půlka -->
+        <div class="right-grid">
+            <div class="image-2">Image 2</div>
+            <div class="bottom-images">
+                <div class="image-3">Image 3</div>
+                <div class="see-more">See more</div>
+            </div>
+        </div>
+    </div>
+    
+    
+
+    <!-- Section 2 -->
+    <section class="section">
+        <h2>Section 2</h2>
+        <p>This is the second section content.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <h2>Travel Blog<span>*</span></h2>
+                <p>A place where nature and adventure unite</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h3>About us</h3>
+                    <ul>
+                        <li><a href="#">Our guides</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Contact us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>FAQ</h3>
+                    <ul>
+                        <li><a href="#">Personal trip</a></li>
+                        <li><a href="#">Group trip</a></li>
+                        <li><a href="#">Tour payment</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="footer-bottom">
+            <p>Copyright 2025 Travel Blog - Plzeň, Czech republic</p>
+            <div class="footer-icons">
+                <a href="#"><img src="./icons/facebook-f-brands-solid.svg" alt=""></a>
+                <a href="#"><img src="./icons/instagram-brands-solid.svg" alt=""></i></a>
+                <a href="#"><img src="./icons/youtube-brands-solid.svg" alt=""></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
