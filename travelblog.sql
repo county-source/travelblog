@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Počítač: 127.0.0.1
--- Vytvořeno: Pon 17. bře 2025, 09:31
--- Verze serveru: 10.4.32-MariaDB
--- Verze PHP: 8.2.12
+-- Host: 127.0.0.1
+-- Generation Time: Mar 19, 2025 at 10:30 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Databáze: `travelblog`
+-- Database: `travelblog`
 --
 
 -- --------------------------------------------------------
 
 --
--- Struktura tabulky `articles`
+-- Table structure for table `articles`
 --
 
 CREATE TABLE `articles` (
@@ -39,7 +39,7 @@ CREATE TABLE `articles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
 
 --
--- Vypisuji data pro tabulku `articles`
+-- Dumping data for table `articles`
 --
 
 INSERT INTO `articles` (`idArticles`, `Title`, `Content`, `ProfileImg`, `Image`, `Author`, `Destination`, `DatePublic`) VALUES
@@ -48,7 +48,7 @@ INSERT INTO `articles` (`idArticles`, `Title`, `Content`, `ProfileImg`, `Image`,
 -- --------------------------------------------------------
 
 --
--- Struktura tabulky `destination`
+-- Table structure for table `destination`
 --
 
 CREATE TABLE `destination` (
@@ -57,7 +57,7 @@ CREATE TABLE `destination` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
 
 --
--- Vypisuji data pro tabulku `destination`
+-- Dumping data for table `destination`
 --
 
 INSERT INTO `destination` (`idDestination`, `Name`) VALUES
@@ -69,7 +69,7 @@ INSERT INTO `destination` (`idDestination`, `Name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktura tabulky `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -81,7 +81,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
 
 --
--- Vypisuji data pro tabulku `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`idUsers`, `UserName`, `UserEmail`, `Password`, `Role`) VALUES
@@ -91,11 +91,11 @@ INSERT INTO `users` (`idUsers`, `UserName`, `UserEmail`, `Password`, `Role`) VAL
 (5, 'jakub vana', 'jakubvana7@gmail.com', 'Ahoj123', 'delegate');
 
 --
--- Indexy pro exportované tabulky
+-- Indexes for dumped tables
 --
 
 --
--- Indexy pro tabulku `articles`
+-- Indexes for table `articles`
 --
 ALTER TABLE `articles`
   ADD PRIMARY KEY (`idArticles`),
@@ -103,45 +103,45 @@ ALTER TABLE `articles`
   ADD KEY `Destination` (`Destination`);
 
 --
--- Indexy pro tabulku `destination`
+-- Indexes for table `destination`
 --
 ALTER TABLE `destination`
   ADD PRIMARY KEY (`idDestination`);
 
 --
--- Indexy pro tabulku `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`idUsers`);
 
 --
--- AUTO_INCREMENT pro tabulky
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT pro tabulku `articles`
+-- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
   MODIFY `idArticles` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT pro tabulku `destination`
+-- AUTO_INCREMENT for table `destination`
 --
 ALTER TABLE `destination`
   MODIFY `idDestination` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT pro tabulku `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `idUsers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- Omezení pro exportované tabulky
+-- Constraints for dumped tables
 --
 
 --
--- Omezení pro tabulku `articles`
+-- Constraints for table `articles`
 --
 ALTER TABLE `articles`
   ADD CONSTRAINT `articles_ibfk_1` FOREIGN KEY (`Author`) REFERENCES `users` (`idUsers`) ON DELETE CASCADE ON UPDATE CASCADE,
