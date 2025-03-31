@@ -15,8 +15,9 @@ if (session_status() === PHP_SESSION_NONE) {
     <li><a href="index.php">Home</a></li>
     <li><a href="bloglist.php">Blogs</a></li>
     <?php if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): ?>
-      <li><a href="adminpanel.php">Panel</a></li>
+      <li><a href="adminpanel.php">My blogs</a></li>
       <li><a href="logout.php">Logout</a></li>
+      <li>Hi, <?php echo htmlspecialchars($_SESSION['user_name']); ?></li>
     <?php else: ?>
       <li><a href="login.php">Login</a></li>
       <li><a href="register.php">Register</a></li>

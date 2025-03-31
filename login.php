@@ -26,7 +26,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $result = $conn->query($sql);
 
   if ($result && $result->num_rows > 0) {
+    $user = $result->fetch_assoc();
     $_SESSION['logged_in'] = true;
+    $_SESSION['user_id'] = $user['idUsers'];
+    $_SESSION['user_name'] = $user['UserName'];
     header("Location: login.php");
     exit();
   } else {

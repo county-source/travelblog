@@ -1,15 +1,15 @@
 <?php
 // bloglist.php
 
-// Spustíme session, pokud ještě neběží
+// Start session if not already started
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Načteme sdílený header s navbarem (a tamtéž se kontroluje session)
+// Include the shared header
 include 'header.php';
 
-// Připojení k DB
+// Connect to the database
 $servername = "localhost";
 $username   = "root"; 
 $password   = "";
@@ -17,93 +17,93 @@ $dbname     = "travelblog";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
-    die("Nepovedlo se připojit: " . $conn->connect_error);
+    die("Connection failed: " . $conn->connect_error);
 }
 
-// Převezmeme filtry z GET
+// Retrieve filter values from GET parameters
 $search    = isset($_GET['search']) ? $_GET['search'] : '';
 $continent = isset($_GET['continent']) ? $_GET['continent'] : 'none';
 $dateOrder = isset($_GET['dateorder']) ? $_GET['dateorder'] : 'none';
 
-// Mapujeme destinace na kontinenty (příklad)
+// Map continents to destination names (adjust values to match your database)
 $continentMap = [
-    'africa'        => ['???'],
-    'asia'          => ['Tokyo'],
-    'europe'        => ['Paris','Plzen'],
+    'africa'        => ['South Africa'],
+    'asia'          => ['Japan','China'],
+    'europe'        => ['Italy'],
     'north-america' => ['New York'],
-    'south-america' => ['???'],
-    'australia'     => ['???'],
+    'south-america' => ['Peru'],
+    'australia'     => ['Australia'],
     'antarctica'    => ['???']
 ];
 
-// Vytvoříme pole pro WHERE podmínky
+// Build an array for WHERE clauses
 $whereClauses = [];
 
-// 1) Vyhledávání
+// 1) Search Filter
 if (!empty($search) && $search !== 'none') {
-    $whereClauses[] = "(a.Title LIKE '%$search%' OR a.Content LIKE '%$search%')";
+    $searchEsc = $conn->real_escape_string($search);
+    $whereClauses[] = "(a.Title LIKE '%$searchEsc%' OR a.Content LIKE '%$searchEsc%')";
 }
 
-// 2) Filtr kontinentů
+// 2) Continent Filter
 if ($continent !== 'none' && isset($continentMap[$continent])) {
     $allowedDestinations = $continentMap[$continent];
     if (!empty($allowedDestinations)) {
-        $destList = "'" . implode("','", $allowedDestinations) . "'";
+        // Escape each destination value
+        $escapedDestinations = array_map(function($dest) use ($conn) {
+            return $conn->real_escape_string($dest);
+        }, $allowedDestinations);
+        $destList = "'" . implode("','", $escapedDestinations) . "'";
         $whereClauses[] = "d.Name IN ($destList)";
     } else {
-        $whereClauses[] = "1=0"; // nic se nenajde
+        $whereClauses[] = "1=0"; // no results if no allowed destinations
     }
 }
 
-// 3) Seřazení podle data
-$orderBy = "ORDER BY a.idArticles DESC"; 
+// 3) Date Ordering
+$orderBy = "ORDER BY a.idArticles DESC"; // default order
 if ($dateOrder === 'newest') {
     $orderBy = "ORDER BY a.DatePublic DESC";
 } elseif ($dateOrder === 'oldest') {
     $orderBy = "ORDER BY a.DatePublic ASC";
 }
 
-// Složíme SELECT (přidáme a.Image jako Image, abychom ho měli v $row['Image'])
-$sql = "SELECT a.*, a.Image AS Image, u.UserName AS AuthorName, d.Name AS DestinationName
+// Build the final SQL query with JOINs
+$sql = "SELECT a.*, u.UserName AS AuthorName, d.Name AS DestinationName
         FROM articles a
         JOIN users u ON a.Author = u.idUsers
         JOIN destination d ON a.Destination = d.idDestination";
 
-// Když máme WHERE, přidáme ho
+// If any WHERE conditions exist, add them
 if (!empty($whereClauses)) {
     $sql .= " WHERE " . implode(" AND ", $whereClauses);
 }
 
-// Nakonec ORDER
+// Append the ordering clause
 $sql .= " $orderBy";
 
-// Dotaz
+// Debug: Uncomment the lines below to check the query and filter values
+// echo "<pre>$sql</pre>";
+// echo "Search: $search, Continent: $continent, DateOrder: $dateOrder";
+// exit();
+
 $result = $conn->query($sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/png" href="favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Travel Blog</title>
-  <link
-    href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="images/favicon.png">
 </head>
 <body>
-  <!-- Filtr + vyhledávací formulář -->
+  <!-- Filter and search form -->
   <div class="search-section">
     <form class="search-form" action="bloglist.php" method="GET">
-      <input
-        type="text"
-        name="search"
-        class="search-input"
-        placeholder="Search for blogs..."
-        value="<?php echo htmlspecialchars($search); ?>"
-      />
+      <input type="text" name="search" class="search-input" placeholder="Search for blogs..." value="<?php echo htmlspecialchars($search); ?>" />
       <select name="continent" class="filter-select">
         <option value="none" <?php if($continent==='none') echo 'selected'; ?>>No Continent Filter</option>
         <option value="africa" <?php if($continent==='africa') echo 'selected'; ?>>Africa</option>
@@ -120,7 +120,7 @@ $result = $conn->query($sql);
         <option value="oldest" <?php if($dateOrder==='oldest') echo 'selected'; ?>>Oldest</option>
       </select>
       <button type="submit" class="search-button">
-        <img src="./icons/magnifying-glass-solid.svg" alt="Search Icon" />
+        <img src="icons/magnifying-glass-solid.svg" alt="Search Icon" />
       </button>
     </form>
   </div>
@@ -131,24 +131,26 @@ $result = $conn->query($sql);
       <?php while($row = $result->fetch_assoc()): ?>
         <div class="blog-item">
           <div class="blog-image">
-            <!-- Tady zobrazíme obrázek -->
-            <img src="./images/<?php echo htmlspecialchars($row['Image']); ?>" alt="Blog Image" />
+            <?php if (!empty($row['Image'])): ?>
+                <img src="<?php echo htmlspecialchars($row['Image']); ?>" alt="Blog Image" />
+            <?php else: ?>
+                <img src="images/default.jpg" alt="Default Image" />
+            <?php endif; ?>
           </div>
           <div class="blog-content">
-            <h2 class="blog-header"><?php echo htmlspecialchars($row['Title']); ?></h2>
-            <p class="blog-subheader">
-              Autor: <?php echo htmlspecialchars($row['AuthorName']); ?> |
-              Destinace: <?php echo htmlspecialchars($row['DestinationName']); ?> |
-              Datum: <?php echo htmlspecialchars($row['DatePublic']); ?>
-            </p>
+            <!-- Display only the destination (as header) and title (as subheader) -->
+            <h2 class="blog-header"><?php echo htmlspecialchars($row['DestinationName']); ?></h2>
+            <h3 class="blog-subheader"><?php echo htmlspecialchars($row['Title']); ?></h3>
           </div>
           <div class="blog-arrow">
-            <img src="./icons/arrow-right-solid.svg" alt="Arrow Icon" />
+            <a href="dynamic.php?id=<?php echo $row['idArticles']; ?>">
+              <img src="icons/arrow-right-solid.svg" alt="Arrow Icon" />
+            </a>
           </div>
         </div>
       <?php endwhile; ?>
     <?php else: ?>
-      <p style="text-align:center;">Žádné blogy k zobrazení, bro!</p>
+      <p style="text-align:center;">No blogs found, bro!</p>
     <?php endif; ?>
   </div>
 
@@ -182,9 +184,9 @@ $result = $conn->query($sql);
     <div class="footer-bottom">
       <p>Copyright 2025 Travel Blog - Plzeň, Czech Republic</p>
       <div class="footer-icons">
-        <a href="#"><img src="./icons/facebook-f-brands-solid.svg" alt=""/></a>
-        <a href="#"><img src="./icons/instagram-brands-solid.svg" alt=""/></a>
-        <a href="#"><img src="./icons/youtube-brands-solid.svg" alt=""/></a>
+        <a href="#"><img src="icons/facebook-f-brands-solid.svg" alt=""/></a>
+        <a href="#"><img src="icons/instagram-brands-solid.svg" alt=""/></a>
+        <a href="#"><img src="icons/youtube-brands-solid.svg" alt=""/></a>
       </div>
     </div>
   </footer>
@@ -199,5 +201,4 @@ $result = $conn->query($sql);
 </body>
 </html>
 <?php
-// Uzavřeme spojení s DB
 $conn->close();

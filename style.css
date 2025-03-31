@@ -184,7 +184,7 @@ body {
   gap: 10px;
   height: 100%;
   box-sizing: border-box;
-  background-image: url('./images/sergio-sala-VbB6HYunm04-unsplash.jpg'); /* Set the background image */
+  background-image: url('./images/singapoure.JPG'); /* Set the background image */
   background-size: cover; /* Ensure the image covers the entire box */
   background-position: center; /* Center the image */
 }
@@ -251,7 +251,7 @@ body {
   gap: 10px;
   height: 100%;
   box-sizing: border-box;
-  background-image: url('./images/iako-randrianarivelo-Bh7zPvlC0dc-unsplash.jpg'); /* Set the background image */
+  background-image: url('./images/savana.JPG'); /* Set the background image */
   background-size: cover; /* Ensure the image covers the entire box */
   background-position: center; /* Center the image */
 }
@@ -303,7 +303,7 @@ body {
   gap: 15px;
   height: 100%;
   box-sizing: border-box;
-  background-image: url('./images/yiran-ding-aIG78YGhDmM-unsplash.jpg'); /* Set the background image */
+  background-image: url('./images/china.JPG'); /* Set the background image */
   background-size: cover; /* Ensure the image covers the entire box */
   background-position: center; /* Center the image */
 }
@@ -1060,4 +1060,9 @@ h2 {
 
 .btn:hover {
   background-color: black;
+}
+
+
+.admin-container{
+  margin: 20px;
 }
