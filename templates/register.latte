@@ -1,0 +1,55 @@
+{if session_status() === PHP_SESSION_NONE}
+    {do session_start()}
+{/if}
+
+{include 'header.latte'}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Register Page</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://api.fontshare.com/v2/css?f[]=switzer@100,101,200,201,300,301,400,401,500,501,600,601,700,701,800,801,900,901,1,2&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="signup-container">
+    <div class="signup-content">
+      <div class="signup-left">
+        <h1 class="logo-register">Travel Blog<span>*</span></h1>
+        <h2 class="subheader">Sign up</h2>
+        {ifset $message}
+          <p style="color: red; margin-top: 10px;">{$message}</p>
+        {/ifset}
+      </div>
+      <div class="signup-right">
+        <form class="signup-form" action="register.php" method="POST">
+          <div class="input-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+          <div class="input-group">
+            <label for="second-name">Second Name</label>
+            <input type="text" id="second-name" name="second_name" required />
+          </div>
+          <div class="input-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required />
+          </div>
+          <div class="input-group">
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" id="confirm-password" name="confirm_password" required />
+          </div>
+          <button type="submit" class="btn">Sign Up</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

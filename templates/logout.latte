@@ -1,0 +1,5 @@
+{do session_start()}
+{do session_destroy()}
+{* // Po odhlášení přesměrujeme na hlavní stránku (nebo kamkoliv) *}
+{do header("Location: index.php")}
+{do exit}

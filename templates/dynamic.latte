@@ -1,0 +1,88 @@
+{if session_status() === PHP_SESSION_NONE}
+    {do session_start()}
+{/if}
+
+{include 'header.latte'}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{$blog['Title']} - Travel Blog</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,600&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="images/favicon.png">
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <div class="hero-image">
+    {if !empty($blog['Image'])}
+      <img src="{$blog['Image']}" alt="Blog Image">
+    {else}
+      <img src="./images/header.JPG" alt="Default Hero Image">
+    {/if}
+    <div class="hero-content">
+      <h1>{$blog['DestinationName']}</h1>
+    </div>
+  </div>
+
+  <!-- Blog Detail Section -->
+  <section class="section">
+    <article class="blog-detail">
+      <h2>{$blog['Title']}</h2>
+      <p><strong>Author:</strong> {$blog['AuthorName']}</p>
+      <p><strong>Date:</strong> {$blog['DatePublic']}</p>
+      <div class="blog-content-full">
+        {$blog['Content']|noescape} {* pokud obsahuje HTML *}
+      </div>
+    </article>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-logo">
+        <h2>Travel Blog<span>*</span></h2>
+        <p>A place where nature and adventure unite</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-column">
+          <h3>About us</h3>
+          <ul>
+            <li><a href="#">Our guides</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact us</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>FAQ</h3>
+          <ul>
+            <li><a href="#">Personal trip</a></li>
+            <li><a href="#">Group trip</a></li>
+            <li><a href="#">Tour payment</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="footer-bottom">
+      <p>Copyright 2025 Travel Blog - Plzeň, Czech Republic</p>
+      <div class="footer-icons">
+        <a href="#"><img src="./uploads/facebook-f-brands-solid.svg" alt=""></a>
+        <a href="#"><img src="./uploads/instagram-brands-solid.svg" alt=""></a>
+        <a href="#"><img src="./uploads/youtube-brands-solid.svg" alt=""></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const mobileMenu = document.getElementById("mobile-menu");
+    const navLinks = document.querySelector(".nav-links");
+    mobileMenu.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+  </script>
+</body>
+</html>

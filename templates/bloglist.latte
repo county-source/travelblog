@@ -1,0 +1,117 @@
+{if session_status() === PHP_SESSION_NONE}
+    {do session_start()}
+{/if}
+
+{include 'header.latte'}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Travel Blog</title>
+  <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="uploads/favicon.png">
+</head>
+<body>
+
+  <!-- Filter and search form -->
+  <div class="search-section">
+    <form class="search-form" action="bloglist.php" method="GET">
+      <input type="text" name="search" class="search-input" placeholder="Search for blogs..." value="{$search}" />
+      <select name="continent" class="filter-select">
+        <option value="none" {if $continent === 'none'}selected{/if}>No Continent Filter</option>
+        <option value="africa" {if $continent === 'africa'}selected{/if}>Africa</option>
+        <option value="asia" {if $continent === 'asia'}selected{/if}>Asia</option>
+        <option value="europe" {if $continent === 'europe'}selected{/if}>Europe</option>
+        <option value="north-america" {if $continent === 'north-america'}selected{/if}>North America</option>
+        <option value="south-america" {if $continent === 'south-america'}selected{/if}>South America</option>
+        <option value="australia" {if $continent === 'australia'}selected{/if}>Australia</option>
+        <option value="antarctica" {if $continent === 'antarctica'}selected{/if}>Antarctica</option>
+      </select>
+      <select name="dateorder" class="filter-select">
+        <option value="none" {if $dateOrder === 'none'}selected{/if}>No Date Filter</option>
+        <option value="newest" {if $dateOrder === 'newest'}selected{/if}>Newest</option>
+        <option value="oldest" {if $dateOrder === 'oldest'}selected{/if}>Oldest</option>
+      </select>
+      <button type="submit" class="search-button">
+        <img src="uploads/magnifying-glass-solid.svg" alt="Search Icon" />
+      </button>
+    </form>
+  </div>
+
+  <!-- Blog Section -->
+  <div class="blogs-container">
+    {if $result && $result->num_rows > 0}
+      {while $row = $result->fetch_assoc()}
+        <div class="blog-item">
+          <div class="blog-image">
+            {if !empty($row['Image'])}
+              <img src="{$row['Image']}" alt="Blog Image" />
+            {else}
+              <img src="images/default.jpg" alt="Default Image" />
+            {/if}
+          </div>
+          <div class="blog-content">
+            <h2 class="blog-header">{$row['DestinationName']}</h2>
+            <h3 class="blog-subheader">{$row['Title']}</h3>
+          </div>
+          <div class="blog-arrow">
+            <a href="dynamic.php?id={$row['idArticles']}">
+              <img src="uploads/arrow-right-solid.svg" alt="Arrow Icon" />
+            </a>
+          </div>
+        </div>
+      {/while}
+    {else}
+      <p style="text-align:center;">No blogs found, bro!</p>
+    {/if}
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-logo">
+        <h2>Travel Blog<span>*</span></h2>
+        <p>A place where nature and adventure unite</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-column">
+          <h3>About us</h3>
+          <ul>
+            <li><a href="#">Our guides</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact us</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>FAQ</h3>
+          <ul>
+            <li><a href="#">Personal trip</a></li>
+            <li><a href="#">Group trip</a></li>
+            <li><a href="#">Tour payment</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div class="footer-bottom">
+      <p>Copyright 2025 Travel Blog - Plzeň, Czech Republic</p>
+      <div class="footer-uploads">
+        <a href="#"><img src="uploads/facebook-f-brands-solid.svg" alt=""/></a>
+        <a href="#"><img src="uploads/instagram-brands-solid.svg" alt=""/></a>
+        <a href="#"><img src="uploads/youtube-brands-solid.svg" alt=""/></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const mobileMenu = document.getElementById("mobile-menu");
+    const navLinks = document.querySelector(".nav-links");
+    mobileMenu.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+  </script>
+</body>
+</html>

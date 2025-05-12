@@ -1,0 +1,1067 @@
+/* Deklarace proměnných */
+:root {
+  --bg-color: #f5f5f5;
+  --secondary-color: #e0e0e0;
+  --text-color: #000000;
+}
+
+/* General styles */
+body {
+  margin: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: "Switzer", sans-serif;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 15px;
+}
+
+/* Logo Styles */
+.logo {
+  font-size: 20px;  
+  font-weight: bold;
+  color: #000;
+  display: flex;
+  align-items: center;
+}
+
+.logo span {
+  color: #000; /* Barva hvězdičky */
+  font-size: 20px; /* O něco menší než hlavní text */
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+.nav-links li {
+  display: inline-block;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 16px;
+  padding: 5px 10px;
+  transition: background 0.3s;
+}
+
+/* Hero Image Container */
+.hero-image {
+  position: relative;
+  height: 400px;
+  padding: 0px 10px; /* Padding kolem celého obalu */
+  box-sizing: border-box;
+  margin: 0; /* Zrušit margin */
+  background-color: transparent; /* Odstranění šedého pozadí */
+  background-color: none;
+}
+
+/* Hero Image */
+.hero-image img {
+  width: 100%; /* Vyplní celý box */
+  height: 100%;
+  padding: 0%;
+  object-fit: cover;
+  border-radius: 15px; /* Zaoblené rohy */
+}
+.hero-image .hero-content {
+  position: absolute;
+  padding: 0;
+  top: 30%;
+  left: 5%; /* Vzdálenost od levého kraje */
+  transform: translateY(-50%);
+  color: white;
+  text-align: left;
+}
+
+.hero-image .hero-content h1 {
+  font-size: 90px;
+  margin: 0;
+  font-weight: 600;
+}
+
+.hero-image .hero-content p {
+  font-size: 20px;
+  margin: 10px 0 0;
+  font-weight: 400;
+}
+
+/* Information */
+/* Rounded Section */
+/* Rounded Section with Background */
+.rounded-section {
+  border-radius: 15px; /* Zaoblené rohy */
+  padding: 40px 20px;
+  margin: 10px;
+  text-align: center;
+  background-color: var(--secondary-color); /* Jemné pozadí */
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.section-subtitle {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.offers-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.offer-item {
+  border-radius: 15px; /* Zaoblené rohy karet */
+  padding: 20px;
+  width: 200px;
+  text-align: center;
+
+  /* Odstranění pozadí karet a dekorací */
+  background: none;
+  box-shadow: none;
+  border: none;
+}
+
+.offer-icon img {
+  width: 40px; /* Zmenší velikost ikon */
+  height: 40px; /* Zajistí čtvercový poměr */
+  filter: grayscale(100%) brightness(50%); /* Udělá ikony šedé */
+  margin-bottom: 10px;
+}
+
+.offer-item h3 {
+  font-size: 18px;
+  color: #000;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.offer-item p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Základní nastavení */
+/* Blogs Container */
+.blogs-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  padding-bottom: 20px;
+  height: 500px; /* Increase the height */
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* Left Big Box */
+.blog-left {
+  display: flex;
+  flex-direction: column;
+  background-color: #d0d0d0;
+  border-radius: 15px;
+  padding: 20px;
+  gap: 10px;
+  height: 100%;
+  box-sizing: border-box;
+  background-image: url('./uploads/singapoure.JPG'); /* Set the background image */
+  background-size: cover; /* Ensure the image covers the entire box */
+  background-position: center; /* Center the image */
+}
+
+.blog-left .image {
+  display: none; /* Hide the image element */
+}
+
+.blog-left .image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.blog-left .content {
+  margin-top: 15px;
+}
+
+.blog-header {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.blog-subheader {
+  font-size: 14px;
+  color: #555;
+}
+
+.arrow {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: auto;
+}
+
+.arrow img {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.arrow img:hover {
+  transform: scale(1.1);
+}
+
+/* Right Column */
+.blog-right {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-sizing: border-box;
+}
+
+/* Top Wide Box */
+.top-box {
+  background-color: #d0d0d0;
+  border-radius: 15px;
+  padding: 10px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 10px;
+  height: 100%;
+  box-sizing: border-box;
+  background-image: url('./uploads/savana.JPG'); /* Set the background image */
+  background-size: cover; /* Ensure the image covers the entire box */
+  background-position: center; /* Center the image */
+}
+
+.top-box .content {
+  align-self: start;
+}
+.top-box .image {
+  display: none; /* Hide the image element */
+}
+
+.top-box .image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Bottom Two Boxes */
+.blog-left .content, .top-box .content, .bottom-box .content {
+  color: white; /* Make the text white */
+}
+
+.blog-content .blog-header {
+  font-size: 28px; /* Increase the font size */
+  font-weight: bold;
+  margin: 0;
+  color: black; /* Ensure the header text is white */
+}
+
+
+.blog-subheader {
+  font-size: 18px; /* Increase the font size */
+  color: white; /* Ensure the subheader text is white */
+}
+.bottom-boxes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.bottom-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #d0d0d0;
+  border-radius: 15px;
+  padding: 20px;
+  gap: 15px;
+  height: 100%;
+  box-sizing: border-box;
+  background-size: cover; /* Ensure the image covers the entire box */
+  background-position: center; /* Center the image */
+}
+
+.bottom-box .image {
+  display: none; /* Hide the image element */
+}
+
+.bottom-box .image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.bottom-box .content {
+  margin-top: 10px;
+}
+
+.see-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  background-color: var(--secondary-color);
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background 0.3s;
+  background-image: url('./images/see-more-background.jpg'); /* Set the background image */
+  background-size: cover; /* Ensure the image covers the entire box */
+  background-position: center; /* Center the image */
+}
+
+.see-more:hover {
+  background-color: #ccc;
+}
+
+/* Image with Text Container */
+.image-with-text {
+  position: relative;
+  height: 150px;
+  margin: 40px 0; /* Ensure vertical spacing between the blogs and image */
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+.image-with-text img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-with-text .content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  font-size: 25px;
+  font-weight: lighter;
+}
+
+.image-with-text button {
+  margin-top: 10px;
+  padding: 12px 25px;
+  font-size: 15px;
+  color: var(--text-color);
+  background-color: white;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .blogs-container {
+    grid-template-columns: 1fr;
+  }
+
+  .bottom-boxes {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Image with text */
+.image-with-text {
+  position: relative;
+  height: 300px;
+  margin: 10px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.image-with-text img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.image-with-text .content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  font-size: 25px;
+  font-weight: lighter;
+}
+
+.image-with-text button {
+  margin-top: 10px;
+  padding: 12px 25px;
+  font-size: 15px;
+  color: var(--text-color);
+  background-color: white;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--secondary-color);
+  padding: 20px 40px;
+  border-radius: 15px;
+  font-family: Arial, sans-serif;
+  color: #555;
+  margin: 10px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.footer-logo h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+  color: #000;
+}
+
+.footer-logo span {
+  color: #000;
+}
+
+.footer-logo p {
+  font-size: 14px;
+  color: #777;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.footer-column h4 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #000;
+}
+
+.footer-column ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 8px;
+}
+
+.footer-column ul li a {
+  text-decoration: none;
+  color: #777;
+  font-size: 15px;
+  transition: color 0.3s;
+}
+
+.footer-column ul li a:hover {
+  color: #000;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ababab;
+  margin: 10px 0;
+  margin-bottom: 10px;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-bottom p {
+  margin: 0;
+  font-size: 12px;
+  color: #777;
+}
+
+.footer-icons img {
+  width: 20px; /* Nastavení šířky ikon */
+  height: 20px; /* Nastavení výšky ikon */
+  margin: 0 10px; /* Přidání mezer mezi ikonami */
+  transition: transform 0.3s ease; /* Efekt při najetí */
+}
+
+.footer-icons img:hover {
+  transform: scale(1.1); /* Mírné zvětšení při najetí */
+}
+
+/* Responzivní styl */
+@media (max-width: 375px) {
+  /* Navigační lišta */
+  .navbar {
+    flex-wrap: wrap;
+    padding: 8px; /* Menší padding */
+  }
+
+  .hero-image .hero-content h1 {
+    font-size: 70px;
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .nav-links {
+    display: none; /* Skryté ve výchozím stavu */
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    background-color: #f5f5f5;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    z-index: 1000;
+    padding: 10px; /* Upravený padding */
+    border-radius: 8px;
+  }
+
+  .nav-links.active {
+    display: flex; /* Zobrazení po kliknutí na menu */
+  }
+
+  .nav-links li {
+    margin: 8px 0; /* Menší mezery mezi odkazy */
+  }
+
+  .menu-toggle {
+    display: flex; /* Zobrazení tlačítka menu */
+  }
+
+  /* Hlavní sekce s obrázkem a textem */
+  .blog-item {
+    text-align: center;
+    padding: 8px; /* Menší padding kolem položek */
+  }
+
+  .blog-image img {
+    width: 100%; /* Obrázek zabírá plnou šířku */
+    height: auto;
+    border-radius: 8px; /* Mírné zaoblení rohů */
+  }
+
+  .blog-header {
+    font-size: 1.2rem; /* Zmenšená velikost textu nadpisu */
+    line-height: 1.2;
+    margin: 8px 0;
+  }
+
+  .blog-subheader {
+    font-size: 0.9rem; /* Menší podnadpis */
+    line-height: 1.4;
+    color: #555;
+  }
+
+  /* Sekce vyhledávání */
+  .search-form {
+    flex-direction: column;
+    gap: 8px; /* Menší mezery mezi prvky */
+    padding: 8px; /* Menší padding formuláře */
+  }
+
+  .search-input,
+  .filter-select,
+  .search-button {
+    width: 100%; /* Přizpůsobení šířce zařízení */
+  }
+
+  /* Footer */
+  .footer-container {
+    text-align: center; /* Zarovnání na střed */
+    padding: 8px; /* Menší padding v patičce */
+  }
+
+  .footer-links {
+    flex-direction: column; /* Odkazy ve sloupci */
+    gap: 8px; /* Menší mezery mezi sloupci */
+    align-items: center;
+  }
+
+  .footer-icons {
+    justify-content: center;
+  }
+
+  .footer-bottom {
+    font-size: 10px; /* Menší text ve spodní části */
+    margin-top: 8px;
+  }
+}
+
+
+/*bloglist css*/
+
+/* Search Section */
+.search-section {
+  padding: 0px 5px 5px;
+  margin: 5px;
+}
+
+.search-form {
+  display: flex;
+  width: 100%;
+  gap: 5px;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.search-input {
+  flex: 1; /* Zabere celý volný prostor */
+  padding: 12px;
+  border-style: none;
+  background-color: var(--secondary-color);
+  border-radius: 15px;
+  font-size: 16px;
+  outline: none;
+}
+
+.filter-select {
+  width: 200px; /* Pevná šířka filtru */
+  padding: 12px;
+  background-color: var(--secondary-color);
+  border-radius: 15px;
+  font-size: 16px;
+  outline: none;
+  cursor: pointer;
+  border-style: none;
+}
+
+.search-button {
+  width: 50px; /* Velikost tlačítka */
+  background-color: var(--secondary-color);
+  border: none;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.search-button img {
+  width: 20px;
+  height: 20px;
+}
+
+/* Blogs Section */
+.blogs-section {
+  padding: 20px;
+  text-align: center;
+}
+
+.blogs-section h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.blogs-placeholder {
+  font-size: 16px;
+  color: #777;
+  padding: 20px;
+  background-color: var(--secondary-color);
+  border-radius: 15px;
+}
+
+/* Blog Container */
+
+.blogs-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 0px 10px;
+  height: auto;
+  overflow: hidden;
+  border: none;
+  background-color: var(--bg-color);
+}
+
+/* Blog Item */
+.blog-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--secondary-color); /* Šedé pozadí */
+  border-radius: 15px;
+  padding: 20px;
+  gap: 20px;
+  transition: box-shadow 0.3s ease;
+}
+
+/* Blog Image */
+.blog-image img {
+  width: 150px; /* Šířka obrázku */
+  height: 100px; /* Výška obrázku */
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Blog Content */
+.blog-content {
+  flex: 1;
+}
+
+.blog-header {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.blog-subheader {
+  font-size: 14px;
+  color: #555;
+}
+
+/* Blog Arrow */
+.blog-arrow img {
+  width: 30px;
+  height: 30px;
+  filter: grayscale(100%);
+  transition: transform 0.3s ease;
+}
+
+.blog-arrow img:hover {
+  transform: scale(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .blogs-container {
+    grid-template-columns: 1fr; /* Jeden sloupec na menších obrazovkách */
+  }
+}
+
+/*dynamic-blog*/
+
+h2 {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+/* Section Styling */
+.section {
+  padding: 40px 20px;
+  text-align: center;
+  background-color: var(--secondary-color);
+  margin: 10px;
+  border-radius: 15px;
+}
+
+/* Grid Container */
+/* Grid Container */
+.image-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Dvě půlky */
+  gap: 10px;
+  margin: 10px;
+  height: 500px; /* Zvýšení celkové výšky */
+}
+
+/* Levá půlka - Image 1 */
+.image-1 {
+  background-color: var(--secondary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  font-weight: bold;
+  grid-column: 1; /* Levá strana */
+  height: 100%; /* Vyplní celou výšku */
+}
+/* Pravá půlka - Grid v gridu */
+.right-grid {
+  display: grid;
+  grid-template-rows: 3fr 2fr; /* Větší obdélník nahoře, dva menší dole */
+  gap: 10px;
+  height: 100%;
+}
+
+.image-2 {
+  background-color: var(--secondary-color);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.bottom-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Dva obrázky vedle sebe */
+  gap: 10px;
+}
+
+.see-more {
+  background-color: var(--secondary-color);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  height: 100%; /* Vyplní prostor rovnoměrně */
+}
+
+/* Responsivita */
+@media (max-width: 768px) {
+  .image-grid {
+    grid-template-columns: 1fr; /* Jeden sloupec */
+    height: auto;
+  }
+  .right-grid {
+    grid-template-rows: auto;
+  }
+  .bottom-images {
+    grid-template-columns: 1fr;
+  }
+}
+
+/*login*/
+/* Centered container for login */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh; /* Fit below navbar */
+  background-color: var(--bg-color); /* Light background */
+  padding: 20px;
+  box-sizing: border-box;
+  margin-top: 0;
+}
+
+/* Content container for login */
+.login-content {
+  display: flex;
+  background-color: #e0e0e0; /* Light gray background */
+  border-radius: 15px;
+  padding: 50px; /* Increase padding for larger look */
+  max-width: 1000px; /* Match signup page width */
+  width: 100%;
+  gap: 30px;
+  box-sizing: border-box;
+}
+
+/* Left section for login */
+.login-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.logo-login {
+  font-size: 40px; /* Match larger text size */
+  font-weight: bold;
+  margin: 0;
+}
+
+.logo-login span {
+  font-size: 40px;
+  color: #000;
+}
+
+.subheader {
+  font-size: 64px; /* Match larger "Sign up" text size */
+  font-weight: bold;
+  margin-top: 10px;
+  color: #333;
+}
+
+/* Right section for login */
+.login-right {
+  flex: 1;
+  background-color: white; /* White background to match */
+  border-radius: 15px;
+  padding: 40px; /* Larger padding for form */
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* Larger spacing between fields */
+}
+
+/* Input fields for login */
+.input-group {
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 18px; /* Larger label size */
+  color: #333;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 15px; /* Larger input padding */
+  font-size: 18px; /* Larger input text size */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+  border-color: black;
+  outline: none;
+}
+
+/*sign up*/
+/* Centered container */
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85vh; /* Adjust height to fit the screen without scrolling */
+  background-color: var(--bg-color); /* Light background */
+  box-sizing: border-box;
+}
+
+.signup-content {
+  display: flex;
+  background-color: #e0e0e0; /* Light gray background */
+  border-radius: 15px;
+  padding: 30px; /* Reduced padding to fit content */
+  max-width: 1200px; /* Slightly smaller width for compact design */
+  width: 100%;
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+/* Left section */
+.signup-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: flex-start; /* Align content to the left */
+  justify-content: flex-start; /* Align to the top */
+  padding-top: 10px; /* Add padding from the top */
+}
+
+.logo-register {
+  font-size: 40px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.logo-register span {
+  font-size: 40px;
+  color: #000;
+}
+
+.subheader {
+  font-size: 110px; /* Proper size for "Sign up" */
+  font-weight: bolder;
+  margin-top: 10px;
+  color: #333; /* Space between logo and subheader */ /* Subtle contrast */
+}
+
+/* Right section */
+.signup-right {
+  flex: 1;
+  background-color: #f5f5f5; /* Slightly lighter gray for the form area */
+  border-radius: 15px;
+  padding: 20px; /* Reduced padding to save space */
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Slightly reduced gap for compact layout */
+}
+
+/* Input fields */
+.input-group {
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #000000;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 8px; /* Reduced padding for compact inputs */
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.input-group input:focus {
+  border-color: blackn;
+  outline: none;
+}
+
+/* Button */
+.btn {
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.btn:hover {
+  background-color: black;
+}
+
+
+.admin-container{
+  margin: 20px;
+}
